@@ -4,7 +4,9 @@
 require("../../phpMQTT/phpMQTT.php");
 
 
-echo "<h1> MQTT </h1>";
+$topico = $_GET['topico'];
+$mensaje = $_GET['mensaje'];
+
 
 $host = "tcp://m15.cloudmqtt.com:15440";
 $port = "15440";
@@ -18,7 +20,7 @@ echo "Iniciando";
 if($mqtt->connect(true,NULL,$username,$password)){
 
  echo "Conectado";
- $mqtt->publish("smnyl/carlos","TCK213422".date("r"),0);
+ $mqtt->publish($topico , $mensaje , 0);
  $mqtt->close();
 
 
@@ -28,5 +30,7 @@ else{
  echo "No conecto;";
 }
 
+
+echo json_encode(array('status' => 200 , 'message' => 'mensaje enviado'));
 
  ?>
