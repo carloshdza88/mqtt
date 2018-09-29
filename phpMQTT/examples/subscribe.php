@@ -5,13 +5,13 @@ require("../phpMQTT.php");
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
+  set_time_limit(9000);
+
  $host = "tcp://m15.cloudmqtt.com:15440";
  $port = "15440";
  $username = "gxcheyfv";
  $password = "X9BYHngj4usD";
  $message = "";
-
-
 
    $mqtt = new phpMQTT($host, $port, "carlos");
 
