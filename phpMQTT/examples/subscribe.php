@@ -12,36 +12,36 @@ ini_set("display_errors", 1);
  $message = "";
 
 
- //MQTT client id to use for the device. "" will generate a client id automatically
- $mqtt = new phpMQTT($host, $port, "ClientID".rand());
 
- if($mqtt->connect(true,NULL,$username,$password)) {
-      echo "Conectado";
+   $mqtt = new phpMQTT($host, $port, "carlos");
 
+   echo "Iniciando";
+   if(!$mqtt->connect(true,NULL,$username,$password)){
+       exit(1);
+       echo "no conecto";
+   }
 
-}
-else
-{
-			echo "Fail or time out<br />";
-}
-
-
-//$topics['ferries/IOW/#'] = array("qos"=>0, "function"=>"procmsg");
-$topics = "#";
-$mqtt->subscribe($topics,0);
-
-while($mqtt->proc()){
-
-}
+   $topics['#'] = array("qos"=>0, "function"=>"procmsg");
+   $mqtt->subscribe($topics,1);
 
 
 
-//$mqtt->close();
+     try{
+     	while($mqtt->proc()){
 
-function procmsg($topic,$msg){
-		echo "Msg Recieved: ".date("r")."\nTopic:{$topic}\n$msg\n";
-}
+     	}
 
+     }catch(Exception $ex){
+        echo "Excepcion en el while";
+     }
+
+       $mqtt->close();
+
+       function procmsg($topic,$msg){
+
+         echo "Mensaje - " . $msg;
+
+       }
 
 
 ?>
