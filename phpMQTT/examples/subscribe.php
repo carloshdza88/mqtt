@@ -25,7 +25,7 @@ else
 			echo "Fail or time out<br />";
 }
 
-/*
+
 //$topics['ferries/IOW/#'] = array("qos"=>0, "function"=>"procmsg");
 $topics = "#";
 $mqtt->subscribe($topics,0);
@@ -35,12 +35,13 @@ while($mqtt->proc()){
 }
 
 
+
 //$mqtt->close();
 
 function procmsg($topic,$msg){
 		echo "Msg Recieved: ".date("r")."\nTopic:{$topic}\n$msg\n";
 }
 
-*/
+
 
 ?>
