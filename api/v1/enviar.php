@@ -20,7 +20,7 @@ echo "Iniciando";
 if($mqtt->connect(true,NULL,$username,$password)){
 
  echo "Conectado";
-$mqtt->publish($topico  , $mensaje , 0);
+$mqtt->publish($topico +'/usuario' , $mensaje , 0);
 //$mqtt->publish($topico + '/admin' , $mensaje , 0);
  $mqtt->close();
 
